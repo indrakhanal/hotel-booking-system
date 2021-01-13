@@ -1,0 +1,74 @@
+{% extends 'app1/master.html' %}
+
+{% block 'title'%}fill form{%endblock%}
+
+{% block 'content' %}
+{%load static%}
+
+<hr/>
+<br/>
+<br/>
+
+     <!-- Booking Room Start-->
+        <div class="booking-area">
+            <div class="container">
+               <div class="row ">
+               <div class="col-12">
+                   <br/><br/>
+                   {% include 'message/message.html'%}
+                   <h1>Check If Room IS Available</h1>
+                   <br/><hr/>
+                <form method="post" action="{% url 'check' %}">
+                    <div class="booking-wrap d-flex justify-content-between align-items-center">
+
+                    <!-- select in date -->
+                        <div class="single-select-box mb-30">
+                        <!-- select out date -->
+                            <div class="boking-tittle">
+                            <span> Check In Date:</span>
+                            </div>
+                            <div class="boking-datepicker">
+                                <input type="datetime-local" id="datepicker1" placeholder="10/12/2020" />
+                         </div>
+                    </div>
+                        <!-- Single Select Box -->
+                        <div class="single-select-box mb-30">
+                        <!-- select out date -->
+                            <div class="boking-tittle">
+                                <span>Check OutDate:</span>
+                            </div>
+                            <div class="boking-datepicker">
+                                <input type="datetime-local" id="datepicker2"  placeholder="12/12/2020" />
+                            </div>
+                    </div>
+                        <div class="single-select-box mb-30">
+                            <div class="boking-tittle">
+                                <span>Room Number:</span>
+                            </div>
+                                    <div class="boking-datepicker">
+                                            <input type="text" name="room_no" id="darepicker2" {%if room%}value="{{room}}" hidden{%endif%}>
+                                    </div>
+                        </div>
+                        {% csrf_token %}
+                        <!-- Single Select Box -->
+                        <div class="single-select-box pt-45 mb-30">
+                            <input type="submit" class="btn select-btn" value="Processed">
+                       </div>
+
+
+                </div>
+            </form>
+               </div>
+               </div>
+            </div>
+        </div>
+        <!-- Booking Room End-->
+<br/>
+<br/>
+<div class="row">
+    <div class="col">
+        <h1>All Available Rooms</h1>
+    </div>
+</div>
+
+{%endblock%}

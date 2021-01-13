@@ -1,0 +1,214 @@
+{% extends 'app1/master.html' %}
+
+{% block 'title'%} home_page {%endblock%}
+
+{% block 'content' %}
+{%load static%}
+
+<style>
+    .room-area{
+        width: 100%;
+        height: auto;
+    }
+</style>
+        <!-- slider Area Start-->
+        <div class="slider-area ">
+            {% include 'message/message.html'%}
+            <!-- Mobile Menu -->
+            <div class="slider-active dot-style">
+                <div class="single-slider  hero-overly slider-height d-flex align-items-center" data-background="{% static 'assets/img/hero/h1_hero.jpg' %}" >
+                    <div class="container">
+                        <div class="row justify-content-center text-center">
+                            <div class="col-xl-9">
+                                <div class="h1-slider-caption">
+                                    <h1 data-animation="fadeInUp" data-delay=".4s">top hotel in the city</h1>
+                                    <h3 data-animation="fadeInDown" data-delay=".4s">Hotel & Restaurant</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="single-slider  hero-overly slider-height d-flex align-items-center" data-background="{% static 'assets/img/hero/h1_hero.jpg' %}" >
+                    <div class="container">
+                        <div class="row justify-content-center text-center">
+                            <div class="col-xl-9">
+                                <div class="h1-slider-caption">
+                                    <h1 data-animation="fadeInUp" data-delay=".4s">top hotel in the city</h1>
+                                    <h3 data-animation="fadeInDown" data-delay=".4s">Hotel & Resourt</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="single-slider  hero-overly slider-height d-flex align-items-center" data-background="{% static 'assets/img/hero/h1_hero.jpg' %}" >
+                    <div class="container">
+                        <div class="row justify-content-center text-center">
+                            <div class="col-xl-9">
+                                <div class="h1-slider-caption">
+                                    <h1 data-animation="fadeInUp" data-delay=".4s">top hotel in the city</h1>
+                                    <h3 data-animation="fadeInDown" data-delay=".4s">Hotel & Resourt</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- slider Area End-->
+
+<br/>
+<br/>
+<div class="section">
+    <div class="row">
+        <div class="col col-md-3 col-md-offset-4">
+            <div class="#">
+                <p>If you are regular costumer and you know your favourite room then you can direct check your room is available or not</p>
+            </div>
+            <a href="{% url 'check' %}"><button type="button" class="btn btn-secondary">Click Here For Check Room Available</button></a>
+        </div>
+        <div class="col">
+            <div class="col col-md-8">
+                <div class="text">
+                    <h3>THE ALL AVAILABLE NUMBER OF ROOMS IN OUR HOTEL ARE</h3><br/>
+                    <div class="boxed-btn">
+                        <div class="text">
+                            <p><b>book your room without showing all detail</b></p>
+                            <p><b>directly you can book your room by searching available room numbers</b></p>
+                        </div>
+                    </div>
+                 <form method="post" action="{% url 'search' %}" class="form-control">
+                     <select name="select">
+                         <option>101</option>
+                         <option>102</option>
+                         <option>103</option>
+                         <option>104</option>
+                         <option>105</option>
+                         <option>106</option>
+                         <option>107</option>
+                         <option>108</option>
+                     </select>
+                     <input type="submit" value="Search Room Number" class="btn btn-secondary">
+                      {% csrf_token %}
+                 </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br/>
+<br/>
+<hr/>
+
+
+        <!-- Room Start -->
+        <section class="room-area">
+            <div class="container">
+                {%for item in room_data%}
+                <div class="row">
+                <!-- new addition by myself-->
+                 <div class="col">
+                        <!-- Single Room -->
+                        <div class="single-room mb-50">
+                            <div class="room-img">
+                               <a href="{% url 'check'%}"> <img src="{{MEDIA_ROOT}}{{item.room_photo.url}}" alt="" style="width: 90%; height: 10%"></a>
+                            </div>
+                            <div class="room-caption">
+                                <div class="per-night">
+                                    <span><u>facilities/</u></span><h4><a href="{% url 'check'%}"><b>{{item.room_facilities}}</b></a></h4>
+                                </div>
+                                <div class="per-night">
+                                    <span><u>Room No/</u>{{item.room_no}}</span>
+                                </div>
+                                <div class="per-night">
+                                    <span><u>Room Size/</u>{{item.room_size}}</span>
+                                </div>
+                                <div class="per-night">
+                                    <span><u>RS</u>{{item.room_price}}<span>/ par night</span></span>
+                                </div>
+                                <div class="per-night">
+                                    <span><u>capacity/</u>{{item.capacity}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+            {%endfor%}
+
+                <div class="row justify-content-center">
+                    <div class="room-btn pt-70">
+                        <a href="#" class="btn view-btn1">View more  <i class="ti-angle-right"></i> </a>
+                    </div>
+                </div>
+            </div>
+<!--end  new addition by myself-->
+        </section>
+        <!-- Room End -->
+
+
+        <!-- Testimonial Start -->
+        <div class="testimonial-area testimonial-padding">
+            <div class="container">
+               <div class="row justify-content-center">
+                    <div class="col-xl-9 col-lg-9 col-md-9">
+                        <div class="h1-testimonial-active">
+                            <!-- Single Testimonial -->
+                            <div class="single-testimonial pt-65">
+                                <!-- Testimonial tittle -->
+                                <div class="font-back-tittle mb-105">
+                                    <div class="archivment-front">
+                                        <img src="{% static 'assets/img/logo/testimonial.png' %}" alt="">
+                                    </div>
+                                    <h3 class="archivment-back">Testimonial</h3>
+                                </div>
+                                 <!-- Testimonial Content -->
+                                <div class="testimonial-caption text-center">
+                                    <p>Yorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.
+                                    </p>
+                                    <!-- Rattion -->
+                                    <div class="testimonial-ratting">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div class="rattiong-caption">
+                                        <span>Clifford Frazier, <span>Regular Client</span> </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Single Testimonial -->
+                            <div class="single-testimonial  pt-65">
+                                <!-- Testimonial tittle -->
+                                <div class="font-back-tittle mb-105">
+                                    <div class="archivment-front">
+                                        <img src="{% static 'assets/img/logo/testimonial.png' %}" alt="">
+                                    </div>
+                                    <h3 class="archivment-back">Testimonial</h3>
+                                </div>
+                                <!-- Testimonial Content -->
+                                <div class="testimonial-caption text-center">
+                                    <p>Yorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.
+                                    </p>
+                                    <div class="testimonial-ratting">
+                                        <a href="#"><i class="fas fa-star"></i></a>
+                                        <a href="#"><i class="fas fa-star"></i></a>
+                                        <a href="#"><i class="fas fa-star"></i></a>
+                                        <a href="#"><i class="fas fa-star"></i></a>
+                                        <a href="#"><i class="fas fa-star"></i></a>
+                                    </div>
+                                    <div class="rattiong-caption">
+                                        <span>Clifford Frazier, <span>Regular Client</span> </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+               </div>
+            </div>
+        </div>
+        <!-- Testimonial End -->
+
+
+{%endblock%}

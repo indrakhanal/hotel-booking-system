@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Activity</title>
+    {%load static%}
+</head>
+<style>
+.user, h3{
+    color: red;
+}
+</style>
+<body>
+<div class="testimonial-area">
+    <br/>
+    <h2 class="text">Check your Activity on this hotel <a href="{%url 'home' %}" style="margin-left: 500px; text-decoration: none;">Home <a href="{% url 'logout' %}" style="margin-left: 500px; text-decoration: none;">Logout </a></a> </h2>
+    <br/>
+    <hr/>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="col col-md-8">
+            <h2>Your Current Activities</h2>
+            {%if user%}
+            <div class="testimonial-area">
+                <h4>Username: {{user.username}}</h4>
+            </div>
+            {%endif%}
+        </div>
+    </div>
+</div>
+<div class="user">
+    <h1>Yo do Following Action on this hotel<hr/></h1>
+    {% for item in c_data%}
+    <div class="room">
+        <h4>Your Booked Room:{{item.room_num}}</h4>
+    </div>
+    {%endfor%}
+</div>
+</body>
+</html>

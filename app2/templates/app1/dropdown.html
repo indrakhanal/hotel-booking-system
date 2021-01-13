@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+<head>
+    <title></title>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+ <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+     .caret-container {
+      float: right;
+    }
+   .caret-up{
+        border-top-width: 0;
+      border-bottom: 4px solid;
+   }
+  </style>
+</head>
+<body>
+  <ul class="nav nav-pills nav-stacked" id="stacked-menu">
+
+    <ul class="nav nav-pills nav-stacked collapse in" id="p1">
+      <li data-toggle="collapse" data-parent="#p1" href="#pv1">
+        <a class="nav-container list-group-item">Click Here For More Detail<div class="caret-container"><span class="caret caret-down"></span></div></a>
+      </li>
+      <ul class="nav nav-pills nav-stacked collapse out" id="pv1">
+          {% block 'content1'%} {%endblock%}
+        <li><a href="" class="list-group-item">sub1111</a></li>
+        <li><a href="" class="list-group-item">sub2222</a></li>
+      </ul>
+  <script>
+  $('.collapse').on('shown.bs.collapse', function() {
+  $(this).parent().find(".caret-down").removeClass("caret-down").addClass("caret-up");
+}).on('hidden.bs.collapse', function() {
+  $(this).parent().find(".caret-up").removeClass("caret-up").addClass("caret-down");
+});
+
+  </script>
+
+</body>
+</html>

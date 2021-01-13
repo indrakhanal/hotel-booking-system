@@ -1,0 +1,40 @@
+{% extends 'app1/master.html' %}
+
+{% block 'title'%}fill form{%endblock%}
+
+{% block 'content' %}
+{%load static%}
+
+<style>
+    .form{
+        width: 100%;
+    }
+</style>
+{% include 'message/message.html'%}
+<b><hr/></b>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <form method="post" action="{%url 'fill_form'%}" class="form">
+            {{form.as_p}}
+            {% csrf_token %}
+            <br/>
+            <button type="submit"  class="btn btn-outline-danger">Book Now</button>
+            </form>
+        </div>
+        <div class="col col-md-6">
+            <h1 style="margin-left: 170px">Hotel Information</h1><hr/>
+            <span style="margin-left: 100px; height: 100px; width: 150px"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d56516.27689203658!2d85.29111315713781!3d27.709031933606834!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19815b6ab47d%3A0x706103062293114e!2sHotel%20Kathmandu%20Inn!5e0!3m2!1sen!2snp!4v1583582344816!5m2!1sen!2snp" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe></span>
+            <p style="margin-left: 100px">use map for location</p>
+
+            <!-- using bootstrap for dropdown -->
+
+    </div>
+</div>
+</div>
+
+
+
+<br/>
+<br/>
+{%endblock%}
